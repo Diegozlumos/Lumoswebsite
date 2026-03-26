@@ -225,8 +225,9 @@ nav {
 .leave-review:hover { border-color: var(--gold); }
 
 /* Slideshow */
-.slideshow-wrap { position: relative; overflow: hidden; }
-.slides { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+.slideshow-wrap { position: relative; overflow: hidden; width: 100%; }
+.slides { display: flex; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); width: 400%; }
+  .slide { min-width: 25%; }
 .slide {
   min-width: 100%; display: grid;
   grid-template-columns: repeat(2, 1fr); gap: 1px;
@@ -531,6 +532,28 @@ a { text-decoration: none; }
 .why-card:hover .why-card-icon { color:var(--gold); }
 .subj-icon { font-size:1.6rem; color:var(--brown); margin-bottom:0.5rem; }
 .c-icon { font-size:1.1rem; color:var(--gold); flex-shrink:0; margin-top:2px; }
+
+
+/* ── HERO SLIDESHOW FIX ── */
+.hero { position: relative !important; overflow: hidden !important; }
+.hero-inner { position: relative; z-index: 2; }
+.hero-slideshow { position: absolute !important; top: 0; left: 0; right: 0; bottom: 0; z-index: 0 !important; }
+.hero-slide {
+  position: absolute !important; top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero-slide.active { opacity: 1 !important; }
+.hero-overlay {
+  position: absolute !important; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to right, rgba(9,26,16,0.85) 0%, rgba(9,26,16,0.5) 60%, rgba(9,26,16,0.3) 100%) !important;
+  z-index: 1 !important;
+}
+.hero-stats { position: relative; z-index: 2; }
+.hero-btns { position: relative; z-index: 2; }
 
 </style>
 </head>
@@ -986,7 +1009,7 @@ a { text-decoration: none; }
             <div class="c-val">078 186 1196</div>
           </div>
         </a>
-        <a href="/cdn-cgi/l/email-protection#d5b4b1b8bcbbf3f6e3e1eeb9a0b8baa6a1a0a1baa7bcbbb2b4b6b4b1b0b8acf3f6e1e3eebabbb8bcb6a7baa6bab3a1f3f6e1e3eeb6bab8" class="c-item">
+        <a href="#" onclick="window.location='mai'+'lto:admin@lumostutoringacademy.onmicrosoft.com';return false;" class="c-item">
           <span class="c-icon">✉</span>
           <div>
             <div class="c-label">email</div>
@@ -1061,7 +1084,7 @@ a { text-decoration: none; }
       <h5>Contact</h5>
       <ul>
         <li><a href="https://wa.me/27781861196" target="_blank">WhatsApp: 078 186 1196</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#5e3f3a333730787d686a65322b33312d2a2b2a312c3730393f3d3f3a3b3327787d6a6865313033373d2c312d31382a787d6a68653d3133">admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com</a></li>
+        <li>admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com</li>
         <li><a href="#register">Register</a></li>
       </ul>
     </div>
@@ -1384,7 +1407,7 @@ function sendBookingToWA() {
 var currentSlide = 0;
 var totalSlides = 4;
 function updateSlide() {
-  document.getElementById('slides').style.transform = 'translateX(-' + (currentSlide*100) + '%)';
+  document.getElementById('slides').style.transform = 'translateX(-' + (currentSlide * 25) + '%)';
   document.querySelectorAll('.dot').forEach(function(d,i){ d.classList.toggle('active', i===currentSlide); });
 }
 function nextSlide() { currentSlide=(currentSlide+1)%totalSlides; updateSlide(); }
