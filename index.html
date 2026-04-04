@@ -103,11 +103,7 @@ nav {
   padding: 120px 5vw 80px;
   position: relative; overflow: hidden;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&q=80') center/cover no-repeat;
-  opacity: 0.12;
-}
+.hero-bg { display: none; /* replaced by hero-slideshow */ }
 .hero-inner { max-width: 1160px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -224,16 +220,7 @@ nav {
 }
 .leave-review:hover { border-color: var(--gold); }
 
-/* Slideshow */
-.slideshow-wrap { position: relative; overflow: hidden; width: 100%; }
-.slides { display: flex; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); width: 400%; }
-  .slide { min-width: 25%; }
-.slide {
-  min-width: 100%; display: grid;
-  grid-template-columns: repeat(2, 1fr); gap: 1px;
-  background: rgba(232,227,216,0.07);
-  border: 1px solid rgba(232,227,216,0.07);
-}
+/* Slideshow - legacy rules removed, replaced by .rev-* below */
 .rev-card { background: rgba(20,26,40,0.95); padding: 2rem; }
 .rev-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-bottom: 1rem; }
 .rev-text {
@@ -555,6 +542,40 @@ a { text-decoration: none; }
 .hero-stats { position: relative; z-index: 2; }
 .hero-btns { position: relative; z-index: 2; }
 
+
+
+/* ── REVIEWS — single authoritative block ── */
+.rev-rating-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin:2rem 0 2.5rem; }
+.rev-rating-box { display:flex; align-items:center; gap:1.25rem; background:rgba(255,255,255,0.05); border:1px solid rgba(201,169,110,0.15); padding:1.25rem 1.75rem; border-radius:4px; }
+.rev-big-num { font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:900; color:var(--gold); line-height:1; }
+.rev-stars-row { color:var(--gold); font-size:1rem; letter-spacing:3px; }
+.rev-rating-sub { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(232,227,216,0.35); margin-top:3px; }
+.rev-leave-link { color:var(--gold); text-decoration:none; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; border-bottom:1px solid rgba(201,169,110,0.3); padding-bottom:2px; }
+.rev-leave-link:hover { border-color:var(--gold); }
+
+.rev-slider-wrap { overflow:hidden; position:relative; width:100%; }
+.rev-track { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); will-change:transform; width:100%; }
+.rev-slide { display:grid; grid-template-columns:1fr 1fr; gap:1px; min-width:100%; width:100%; flex-shrink:0; box-sizing:border-box; background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.08); align-items:start; }
+
+.rev-card2 { background:rgba(10,36,20,0.85); padding:2rem 2rem 2.5rem; display:flex; flex-direction:column; }
+.rev-card2:hover { background:rgba(10,36,20,1); }
+.rev-card2-stars { color:var(--gold); font-size:11px; letter-spacing:3px; margin-bottom:1rem; }
+.rev-card2-text { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; color:rgba(232,227,216,0.85); line-height:1.9; margin-bottom:1.5rem; flex:1; overflow:visible; white-space:normal; }
+.rev-card2-author { display:flex; align-items:center; gap:0.85rem; margin-top:auto; }
+.rev-card2-avatar { width:36px; height:36px; border-radius:50%; background:#1a5c35; color:var(--cream); font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid rgba(201,169,110,0.2); }
+.rev-card2-name { font-size:13px; font-weight:600; color:var(--cream); }
+.rev-card2-src { font-size:10px; color:var(--gold); letter-spacing:0.06em; }
+
+.rev-controls { display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:1.75rem; }
+.rev-btn { width:42px; height:42px; border-radius:50%; background:rgba(232,227,216,0.06); border:1px solid rgba(201,169,110,0.2); color:var(--cream); cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+.rev-btn:hover { background:var(--gold); color:#0d3320; border-color:var(--gold); }
+.rev-dots { display:flex; gap:8px; align-items:center; }
+.rev-dot { width:6px; height:6px; border-radius:50%; background:rgba(232,227,216,0.2); cursor:pointer; transition:all 0.3s; border:none; padding:0; }
+.rev-dot.active { background:var(--gold); width:24px; border-radius:3px; }
+.rev-see-all { color:var(--gold); text-decoration:none; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; border:1px solid rgba(201,169,110,0.3); padding:10px 24px; border-radius:2px; display:inline-block; transition:all 0.2s; }
+.rev-see-all:hover { background:rgba(201,169,110,0.1); border-color:var(--gold); }
+@media(max-width:640px) { .rev-slide { grid-template-columns:1fr; } }
+
 </style>
 </head>
 <body>
@@ -683,80 +704,80 @@ a { text-decoration: none; }
     <span class="tag tag-gold">Student reviews</span>
     <h2 class="sec-title reveal">What our students say.</h2>
     <p class="sec-sub reveal">Real words from real students.</p>
-    <div class="review-rating-bar reveal">
-      <div class="rating-big">4.8</div>
-      <div class="rating-right">
-        <div class="stars-row">★★★★★</div>
-        <div class="rating-label">out of 5 · Google Reviews</div>
+    <div class="rev-rating-row reveal">
+      <div class="rev-rating-box">
+        <span class="rev-big-num">4.8</span>
+        <div>
+          <div class="rev-stars-row">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="rev-rating-sub">out of 5 &middot; Google Reviews</div>
+        </div>
       </div>
-      <a href="https://g.page/r/CZ9PB3Dp1ZXKEAE/review" target="_blank" class="leave-review">Leave a review ↗</a>
+      <a href="https://g.page/r/CZ9PB3Dp1ZXKEAE/review" target="_blank" class="rev-leave-link">Leave a review &#8599;</a>
     </div>
-    <div class="slideshow-wrap reveal">
-      <div class="slides" id="slides">
-        <div class="slide">
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"Lumos has completely changed the way I learn. The tutors explain everything in a way that finally makes sense, and the sessions are always engaging. Topics that used to confuse me now feel easy, and my marks have improved. I feel more confident, motivated, and supported."</p>
-            <div class="rev-author"><div class="rev-avatar">LM</div><div><div class="rev-name">Lefika Machabaphala</div><div class="rev-source">Google Review · 5 stars</div></div></div>
+    <div class="rev-slider-wrap reveal">
+      <div class="rev-track" id="revTrack">
+        <div class="rev-slide">
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;Lumos has completely changed the way I learn. The tutors explain everything in a way that finally makes sense, and the sessions are always engaging. Topics that used to confuse me now feel easy, and my marks have improved. I feel more confident, motivated, and supported.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">LM</div><div><div class="rev-card2-name">Lefika Machabaphala</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
           </div>
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"Lumos tutoring really helped me build my confidence in mathematics. Topics like functions and calculus are topics I now look forward to. They explain concepts so clearly. 10/10 would highly recommend."</p>
-            <div class="rev-author"><div class="rev-avatar">OM</div><div><div class="rev-name">Othimna Mini</div><div class="rev-source">Google Review · 5 stars</div></div></div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"OMG. Joining Lumos Tutoring Academy is one of the best decisions one can make. The tutor is funny, engages with students, ensures no one is left behind. He shares tips and tricks you probably will not receive from your teacher."</p>
-            <div class="rev-author"><div class="rev-avatar">KB</div><div><div class="rev-name">Kaybee</div><div class="rev-source">Google Review · 5 stars</div></div></div>
-          </div>
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"I recently attended an online Maths class focusing on Trigonometry and it was one of the best learning experiences I've had! Trigonometry finally feels manageable and even enjoyable. I'm so grateful I found this class while rewriting."</p>
-            <div class="rev-author"><div class="rev-avatar">SM</div><div><div class="rev-name">Sephephe Malatji</div><div class="rev-source">Google Review · 5 stars</div></div></div>
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;Lumos tutoring really helped me with building my confidence when it comes to mathematics. Topics like functions and calculus are topics I now look forward to. They explain concepts so clearly and leave you wondering where they were the entire time you were struggling. 10/10 would highly recommend.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">OM</div><div><div class="rev-card2-name">Othimna Mini</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
           </div>
         </div>
-        <div class="slide">
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"Thank you so much to Lumos Academy. The tutor gave us the right strategies to study smart, not hard. I started with low confidence and ended on a high note. I'll be walking into that exam room with so much confidence. I just wish I had found Lumos sooner!"</p>
-            <div class="rev-author"><div class="rev-avatar">AS</div><div><div class="rev-name">Azande Sibiya</div><div class="rev-source">Google Review · 5 stars</div></div></div>
+        <div class="rev-slide">
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;OMG. Joining Lumos Tutoring Academy is one of the best decisions one can make. The tutor is funny, engages with his students, ensures that no one is left behind. He understands the struggles we face and shares tips and tricks you probably will not receive from your teacher.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">KB</div><div><div class="rev-card2-name">Kaybee</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
           </div>
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"Lumos Tutor Academy helped me a lot. There was a topic called calculus I did not know and I joined a crossnight for the first time and got the gist of it after I already gave up. It is an easy topic — I want to thank God for showing me the Lumos page."</p>
-            <div class="rev-author"><div class="rev-avatar">ST</div><div><div class="rev-name">Simamkele Teta</div><div class="rev-source">Google Review · 5 stars</div></div></div>
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;I recently attended an online Maths class focusing on Trigonometry and it was one of the best learning experiences I have had! Trigonometry finally feels manageable and even enjoyable. I am so grateful I found this class while rewriting.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">SM</div><div><div class="rev-card2-name">Sephephe Malatji</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
           </div>
         </div>
-        <div class="slide">
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"The lessons made me understand calculus much better. Really appreciate it. Only if I knew about it long ago, maybe my marks would have been pretty good. Hope it expands to more subjects."</p>
-            <div class="rev-author"><div class="rev-avatar">NP</div><div><div class="rev-name">Neo Princess</div><div class="rev-source">Google Review · 5 stars</div></div></div>
+        <div class="rev-slide">
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;Thank you so much to Lumos Academy. The tutor gave us the right strategies to study smart, not hard. I started with low confidence and ended on a high note. I will be walking into that exam room with so much confidence. I just wish I had found Lumos sooner!&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">AS</div><div><div class="rev-card2-name">Azande Sibiya</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
           </div>
-          <div class="rev-card">
-            <div class="rev-stars">★★★★★</div>
-            <p class="rev-text">"Lumos tutoring really helped me with building my confidence. The academy explains concepts so clearly and leave you wondering where they were the entire time you were struggling. 10/10 would highly recommend."</p>
-            <div class="rev-author"><div class="rev-avatar">OM</div><div><div class="rev-name">Othimna Mini</div><div class="rev-source">Google Review · 5 stars</div></div></div>
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;Lumos Tutor Academy helped me a lot. There was a topic called calculus I did not know and I joined a crossnight for the first time and finally got the gist of it. I want to thank God for showing me the Lumos Tutor Academy page.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">ST</div><div><div class="rev-card2-name">Simamkele Teta</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
+          </div>
+        </div>
+        <div class="rev-slide">
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;The lessons made me understand calculus much better. Really appreciate it. Only if I knew about it long ago, maybe my marks would have been much better. Hope Lumos expands to more subjects.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">NP</div><div><div class="rev-card2-name">Neo Princess</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
+          </div>
+          <div class="rev-card2">
+            <div class="rev-card2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-card2-text">&ldquo;Lumos tutoring really helped me with building my confidence when it comes to mathematics. The academy explains concepts so clearly and leave you wondering where they were the entire time you were struggling. 10/10 would highly recommend.&rdquo;</p>
+            <div class="rev-card2-author"><div class="rev-card2-avatar">OM</div><div><div class="rev-card2-name">Othimna Mini</div><div class="rev-card2-src">Google Review &middot; 5 stars</div></div></div>
           </div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:1.5rem;">
-        <a href="https://g.page/r/CZ9PB3Dp1ZXKEAE/review" target="_blank" style="display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;border:1px solid rgba(201,169,110,0.3);padding:10px 24px;border-radius:2px;transition:all 0.2s;">
-          See all our Google reviews ↗
-        </a>
-      </div>
-      <div class="slide-controls">
-        <button class="slide-btn" onclick="prevSlide()">&#8592;</button>
-        <div class="slide-dots" id="dots">
-          <div class="dot active" onclick="goSlide(0)"></div>
-          <div class="dot" onclick="goSlide(1)"></div>
-          <div class="dot" onclick="goSlide(2)"></div>
-          <div class="dot" onclick="goSlide(3)"></div>
+      <div class="rev-controls">
+        <button class="rev-btn" onclick="revPrev()">&#8592;</button>
+        <div class="rev-dots" id="revDots">
+          <button class="rev-dot active" onclick="revGo(0)"></button>
+          <button class="rev-dot" onclick="revGo(1)"></button>
+          <button class="rev-dot" onclick="revGo(2)"></button>
+          <button class="rev-dot" onclick="revGo(3)"></button>
         </div>
-        <button class="slide-btn" onclick="nextSlide()">&#8594;</button>
+        <button class="rev-btn" onclick="revNext()">&#8594;</button>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <a href="https://g.page/r/CZ9PB3Dp1ZXKEAE/review" target="_blank" class="rev-see-all">See all our Google reviews &#8599;</a>
     </div>
   </div>
 </section>
@@ -1009,7 +1030,7 @@ a { text-decoration: none; }
             <div class="c-val">078 186 1196</div>
           </div>
         </a>
-        <a href="#" onclick="window.location='mai'+'lto:admin@lumostutoringacademy.onmicrosoft.com';return false;" class="c-item">
+        <a href="#" onclick="mailToLumos();return false;" class="c-item">
           <span class="c-icon">✉</span>
           <div>
             <div class="c-label">email</div>
@@ -1084,7 +1105,7 @@ a { text-decoration: none; }
       <h5>Contact</h5>
       <ul>
         <li><a href="https://wa.me/27781861196" target="_blank">WhatsApp: 078 186 1196</a></li>
-        <li>admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com</li>
+        <li><a href="#" onclick="mailToLumos();return false;" style="color:rgba(232,227,216,0.35);transition:color 0.2s;" onmouseover="this.style.color='rgba(232,227,216,0.8)'" onmouseout="this.style.color='rgba(232,227,216,0.35)'">admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com</a></li>
         <li><a href="#register">Register</a></li>
       </ul>
     </div>
@@ -1132,18 +1153,7 @@ document.querySelectorAll('.reveal').forEach(function(el) {
   else { observer.observe(el); }
 });
 
-// ── SLIDESHOW ──
-let current = 0;
-const slides = document.getElementById('slides');
-const totalSlides = 2;
-function updateSlide() {
-  slides.style.transform = `translateX(-${current * 100}%)`;
-  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-}
-function nextSlide() { current = (current + 1) % totalSlides; updateSlide(); }
-function prevSlide() { current = (current - 1 + totalSlides) % totalSlides; updateSlide(); }
-function goSlide(n) { current = n; updateSlide(); }
-setInterval(nextSlide, 6000);
+
 
 // ── FAQ ──
 function toggleFaq(btn) {
@@ -1320,121 +1330,156 @@ function submitEnquiry() {
 </div>
 
 <script>
-// ── SCROLL ──
+// Wait for DOM
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ── NAV SCROLL ──
+  window.addEventListener('scroll', function() {
+    var nav = document.querySelector('nav');
+    if (nav) nav.style.background = window.scrollY > 40 ? 'rgba(9,26,16,0.97)' : '';
+  });
+
+  // ── REVEAL ON SCROLL ──
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('visible'); }
+    else { observer.observe(el); }
+  });
+
+  // ── HERO SLIDESHOW ──
+  var heroSlides = document.querySelectorAll('.hero-slide');
+  var heroCur = 0;
+  function goHeroSlide(n) {
+    if (!heroSlides.length) return;
+    heroSlides[heroCur].classList.remove('active');
+    heroCur = (n + heroSlides.length) % heroSlides.length;
+    heroSlides[heroCur].classList.add('active');
+  }
+  window.goHeroSlide = goHeroSlide;
+  if (heroSlides.length > 1) setInterval(function() { goHeroSlide(heroCur + 1); }, 6000);
+
+  // ── REVIEW SLIDESHOW ──
+  var revTrack = document.getElementById('revTrack');
+  var revSlides = document.querySelectorAll('.rev-slide');
+  var revDots = document.querySelectorAll('.rev-dot');
+  var revCur = 0;
+  var revTotal = revSlides.length;
+
+  function revUpdate() {
+    if (!revTrack) return;
+    revTrack.style.transform = 'translateX(-' + (revCur * 100) + '%)';
+    revDots.forEach(function(d, i) { d.classList.toggle('active', i === revCur); });
+  }
+  window.revNext = function() { revCur = (revCur + 1) % revTotal; revUpdate(); };
+  window.revPrev = function() { revCur = (revCur - 1 + revTotal) % revTotal; revUpdate(); };
+  window.revGo = function(n) { revCur = n; revUpdate(); };
+  if (revTotal > 1) setInterval(window.revNext, 7000);
+
+  // ── OVERLAY CLOSE ──
+  ['msformOverlay', 'bookOverlay'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function(e) {
+      if (e.target === el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(function(o) {
+    o.addEventListener('click', function(e) {
+      if (e.target === o) { o.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open, .msform-overlay.open, .book-overlay.open').forEach(function(m) {
+        m.classList.remove('open'); document.body.style.overflow = '';
+      });
+    }
+  });
+
+});
+
+// ── SCROLL TO SECTION ──
 function scrollToSection(id) {
   var el = document.getElementById(id);
   if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
 }
 
+// ── EMAIL ──
+function mailToLumos() {
+  window.location = 'mailto:admin@lumostutoringacademy.onmicrosoft.com';
+}
+
 // ── MODALS ──
-function openModal(id) { var el=document.getElementById(id); if(el){ el.classList.add('open'); document.body.style.overflow='hidden'; } }
-function closeModal(id) { var el=document.getElementById(id); if(el){ el.classList.remove('open'); document.body.style.overflow=''; } }
+function openModal(id) { var el = document.getElementById(id); if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; } }
+function closeModal(id) { var el = document.getElementById(id); if (el) { el.classList.remove('open'); document.body.style.overflow = ''; } }
 
 // ── MS FORM ──
 var MS_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=u2rkqZTEAEek6TiioywRwsz7OJ8KmQ1HjflnApoXVlZUMzk5UUYwT0MyOTJTUVpKRlpOT0ZLQlZPUC4u';
 function openMSForm() {
-  var o=document.getElementById('msformOverlay'), f=document.getElementById('msformFrame');
-  if(f && f.src !== MS_FORM_URL) f.src = MS_FORM_URL;
-  if(o){ o.classList.add('open'); document.body.style.overflow='hidden'; }
+  var o = document.getElementById('msformOverlay'), f = document.getElementById('msformFrame');
+  if (f && f.src !== MS_FORM_URL) f.src = MS_FORM_URL;
+  if (o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; }
 }
 function closeMSForm() {
-  var o=document.getElementById('msformOverlay');
-  if(o){ o.classList.remove('open'); document.body.style.overflow=''; }
+  var o = document.getElementById('msformOverlay');
+  if (o) { o.classList.remove('open'); document.body.style.overflow = ''; }
 }
 
 // ── BOOK SESSION ──
-var bookData = { subject:'', grade:'', hours:1 };
-function openBook() { resetBook(); var o=document.getElementById('bookOverlay'); if(o){ o.classList.add('open'); document.body.style.overflow='hidden'; } }
-function closeBook() { var o=document.getElementById('bookOverlay'); if(o){ o.classList.remove('open'); document.body.style.overflow=''; } }
+var bookData = { subject: '', grade: '', hours: 1 };
+function openBook() { resetBook(); var o = document.getElementById('bookOverlay'); if (o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; } }
+function closeBook() { var o = document.getElementById('bookOverlay'); if (o) { o.classList.remove('open'); document.body.style.overflow = ''; } }
 function resetBook() {
-  bookData={subject:'',grade:'',hours:1};
-  for(var i=1;i<=4;i++){ var s=document.getElementById('bstep'+i); if(s) s.classList.remove('active'); var d=document.getElementById('bp'+i); if(d) d.classList.remove('done'); }
-  document.getElementById('bstep1').classList.add('active');
-  document.getElementById('bp1').classList.add('done');
-  document.querySelectorAll('.book-option,.book-hour-btn').forEach(function(el){ el.classList.remove('selected'); });
+  bookData = { subject: '', grade: '', hours: 1 };
+  for (var i = 1; i <= 4; i++) {
+    var s = document.getElementById('bstep' + i); if (s) s.classList.remove('active');
+    var d = document.getElementById('bp' + i); if (d) d.classList.remove('done');
+  }
+  var s1 = document.getElementById('bstep1'); if (s1) s1.classList.add('active');
+  var b1 = document.getElementById('bp1'); if (b1) b1.classList.add('done');
+  document.querySelectorAll('.book-option, .book-hour-btn').forEach(function(el) { el.classList.remove('selected'); });
 }
 function bookNext(step) {
-  if(step===2 && !bookData.subject){ alert('Please select a subject.'); return; }
-  if(step===3 && !bookData.grade){ alert('Please select your grade.'); return; }
-  if(step===4 && !bookData.hours){ alert('Please select hours.'); return; }
-  for(var i=1;i<=4;i++){ var s=document.getElementById('bstep'+i); if(s) s.classList.remove('active'); }
-  document.getElementById('bstep'+step).classList.add('active');
-  for(var j=1;j<=step;j++){ var d=document.getElementById('bp'+j); if(d) d.classList.add('done'); }
-  if(step===4) updateQuote();
+  if (step === 2 && !bookData.subject) { alert('Please select a subject.'); return; }
+  if (step === 3 && !bookData.grade) { alert('Please select your grade.'); return; }
+  if (step === 4 && !bookData.hours) { alert('Please select hours.'); return; }
+  for (var i = 1; i <= 4; i++) { var s = document.getElementById('bstep' + i); if (s) s.classList.remove('active'); }
+  var sn = document.getElementById('bstep' + step); if (sn) sn.classList.add('active');
+  for (var j = 1; j <= step; j++) { var dj = document.getElementById('bp' + j); if (dj) dj.classList.add('done'); }
+  if (step === 4) updateQuote();
 }
 function bookBack(step) {
-  for(var i=1;i<=4;i++){ var s=document.getElementById('bstep'+i); if(s) s.classList.remove('active'); var d=document.getElementById('bp'+i); if(d) d.classList.remove('done'); }
-  document.getElementById('bstep'+step).classList.add('active');
-  for(var j=1;j<=step;j++){ var d2=document.getElementById('bp'+j); if(d2) d2.classList.add('done'); }
+  for (var i = 1; i <= 4; i++) {
+    var s = document.getElementById('bstep' + i); if (s) s.classList.remove('active');
+    var d = document.getElementById('bp' + i); if (d) d.classList.remove('done');
+  }
+  var sn = document.getElementById('bstep' + step); if (sn) sn.classList.add('active');
+  for (var j = 1; j <= step; j++) { var dj = document.getElementById('bp' + j); if (dj) dj.classList.add('done'); }
 }
 function selectBookOption(el, field) {
-  el.parentElement.querySelectorAll('.book-option').forEach(function(b){ b.classList.remove('selected'); });
+  el.parentElement.querySelectorAll('.book-option').forEach(function(b) { b.classList.remove('selected'); });
   el.classList.add('selected');
   bookData[field] = el.textContent.trim();
 }
 function selectHours(el, hours) {
-  document.querySelectorAll('.book-hour-btn').forEach(function(b){ b.classList.remove('selected'); });
+  document.querySelectorAll('.book-hour-btn').forEach(function(b) { b.classList.remove('selected'); });
   el.classList.add('selected');
   bookData.hours = hours;
 }
 function updateQuote() {
   var total = 149 * bookData.hours;
-  document.getElementById('bookQuoteAmt').textContent = 'R' + total;
-  document.getElementById('bookQuoteDetail').textContent = bookData.hours + ' hour' + (bookData.hours>1?'s':'') + ' · R149/hr · ' + bookData.subject;
+  var amt = document.getElementById('bookQuoteAmt'); if (amt) amt.textContent = 'R' + total;
+  var det = document.getElementById('bookQuoteDetail'); if (det) det.textContent = bookData.hours + ' hour' + (bookData.hours > 1 ? 's' : '') + ' · R149/hr · ' + bookData.subject;
 }
 function sendBookingToWA() {
-  var msg = 'Hi Lumos! I would like to book a One-on-One session.\n\nSubject: ' + bookData.subject + '\nGrade: ' + bookData.grade + '\nHours: ' + bookData.hours + ' hour' + (bookData.hours>1?'s':'') + '\nEstimated cost: R' + (149*bookData.hours) + '\n\nPlease confirm my slot. Thank you!';
+  var msg = 'Hi Lumos! I would like to book a One-on-One session.\n\nSubject: ' + bookData.subject + '\nGrade: ' + bookData.grade + '\nHours: ' + bookData.hours + ' hour' + (bookData.hours > 1 ? 's' : '') + '\nEstimated cost: R' + (149 * bookData.hours) + '\n\nPlease confirm my slot. Thank you!';
   window.open('https://wa.me/27781861196?text=' + encodeURIComponent(msg), '_blank');
 }
 
-// ── HERO SLIDESHOW ──
-(function() {
-  var slides = document.querySelectorAll('.hero-slide');
-  var dots = document.querySelectorAll('.hero-slide-dot');
-  var cur = 0;
-  function goHeroSlide(n) {
-    if(slides[cur]) slides[cur].classList.remove('active');
-    if(dots[cur]) dots[cur].classList.remove('active');
-    cur = (n + slides.length) % slides.length;
-    if(slides[cur]) slides[cur].classList.add('active');
-    if(dots[cur]) dots[cur].classList.add('active');
-  }
-  window.goHeroSlide = goHeroSlide;
-  if(slides.length > 0) setInterval(function(){ goHeroSlide(cur+1); }, 6000);
-})();
-
-// ── REVIEW SLIDESHOW ──
-var currentSlide = 0;
-var totalSlides = 4;
-function updateSlide() {
-  document.getElementById('slides').style.transform = 'translateX(-' + (currentSlide * 25) + '%)';
-  document.querySelectorAll('.dot').forEach(function(d,i){ d.classList.toggle('active', i===currentSlide); });
-}
-function nextSlide() { currentSlide=(currentSlide+1)%totalSlides; updateSlide(); }
-function prevSlide() { currentSlide=(currentSlide-1+totalSlides)%totalSlides; updateSlide(); }
-function goSlide(n) { currentSlide=n; updateSlide(); }
-setInterval(nextSlide, 7000);
-
-// ── OVERLAY CLOSE ──
-document.addEventListener('DOMContentLoaded', function() {
-  ['msformOverlay','bookOverlay'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if(el) el.addEventListener('click', function(e){ if(e.target===el) { el.classList.remove('open'); document.body.style.overflow=''; } });
-  });
-  document.querySelectorAll('.modal-overlay').forEach(function(o) {
-    o.addEventListener('click', function(e){ if(e.target===o){ o.classList.remove('open'); document.body.style.overflow=''; } });
-  });
-  document.addEventListener('keydown', function(e) {
-    if(e.key==='Escape') {
-      document.querySelectorAll('.modal-overlay.open,.msform-overlay.open,.book-overlay.open').forEach(function(m){ m.classList.remove('open'); document.body.style.overflow = ''; }});
-  });
-});
-
-// ── NAV SCROLL ──
-window.addEventListener('scroll', function() {
-  var nav = document.querySelector('nav');
-  if(nav) nav.style.background = window.scrollY > 40 ? 'rgba(9,26,16,0.97)' : '';
-});
+// ── NAV MOBILE ──
+function toggleMenu() { var m = document.getElementById('mobileMenu'); if (m) m.classList.toggle('open'); }
+function closeMenu() { var m = document.getElementById('mobileMenu'); if (m) m.classList.remove('open'); }
 </script>
 </body>
 </html>
