@@ -555,9 +555,9 @@ a { text-decoration: none; }
 
 .rev-slider-wrap { overflow:hidden; position:relative; width:100%; }
 .rev-track { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); will-change:transform; width:100%; }
-.rev-slide { display:grid; grid-template-columns:1fr 1fr; gap:1px; min-width:100%; width:100%; flex-shrink:0; box-sizing:border-box; background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.08); align-items:start; }
+.rev-slide { display:grid; grid-template-columns:1fr 1fr; gap:1px; min-width:100%; width:100%; flex-shrink:0; box-sizing:border-box; background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.08); align-items:stretch; }
 
-.rev-card2 { background:rgba(10,36,20,0.85); padding:2rem 2rem 2.5rem; display:flex; flex-direction:column; }
+.rev-card2 { background:rgba(10,36,20,0.85); padding:2rem 2rem 2.5rem; display:flex; flex-direction:column; height:100%; box-sizing:border-box; }
 .rev-card2:hover { background:rgba(10,36,20,1); }
 .rev-card2-stars { color:var(--gold); font-size:11px; letter-spacing:3px; margin-bottom:1rem; }
 .rev-card2-text { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; color:rgba(232,227,216,0.85); line-height:1.9; margin-bottom:1.5rem; flex:1; overflow:visible; white-space:normal; }
@@ -620,9 +620,12 @@ a { text-decoration: none; }
 <section class="hero" id="home">
   <div class="hero-slideshow">
   <div class="hero-slide active" style="background-image:url('images/_MGL4216.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/_MGL4208.jpg')"></div>
   <div class="hero-slide" style="background-image:url('images/_MGL4319.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/_MGL4359.jpg')"></div>
   <div class="hero-slide" style="background-image:url('images/_MGL4375.jpg')"></div>
   <div class="hero-slide" style="background-image:url('images/_MGL4220.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/_MGL4240.jpg')"></div>
   <div class="hero-slide" style="background-image:url('images/_MGL4381.jpg')"></div>
   <div class="hero-overlay"></div>
 </div>
