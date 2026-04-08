@@ -636,7 +636,7 @@ a { text-decoration: none; }
 
 .rev-slider-wrap { overflow:hidden; position:relative; width:100%; }
 .rev-track { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); will-change:transform; width:100%; }
-.rev-slide { display:grid; grid-template-columns:1fr 1fr; gap:1px; min-width:100%; width:100%; flex-shrink:0; box-sizing:border-box; background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.08); align-items:start; }
+.rev-slide { display:grid; grid-template-columns:1fr 1fr; gap:1px; min-width:100%; width:100%; flex-shrink:0; box-sizing:border-box; background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.08); align-items:stretch; }
 
 .rev-card2 { background:rgba(10,36,20,0.85); padding:2rem 2rem 2.5rem; display:flex; flex-direction:column; }
 .rev-card2:hover { background:rgba(10,36,20,1); }
@@ -1114,11 +1114,11 @@ a { text-decoration: none; }
             <div class="c-val">078 186 1196</div>
           </div>
         </a>
-        <a href="#" onclick="mailToLumos();return false;" class="c-item">
+        <a href="/cdn-cgi/l/email-protection#9afbfef7f3f4daf6eff7f5e9eeefeef5e8f3f4fdfbf9fbfefff7e3b4f9f5b4e0fb" class="c-item">
           <span class="c-icon">✉</span>
           <div>
             <div class="c-label">email</div>
-            <div class="c-val" style="color:var(--cream);">admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com</div>
+            <div class="c-val" style="color:var(--cream);">admin&#64;lumostutoringacademy&#46;co&#46;za</div>
           </div>
         </a>
         <div class="c-item">
@@ -1189,7 +1189,7 @@ a { text-decoration: none; }
       <h5>Contact</h5>
       <ul>
         <li><a href="https://wa.me/27781861196" target="_blank">WhatsApp: 078 186 1196</a></li>
-        <li><a href="#" onclick="mailToLumos();return false;" style="color:rgba(232,227,216,0.35);transition:color 0.2s;" onmouseover="this.style.color='rgba(232,227,216,0.8)'" onmouseout="this.style.color='rgba(232,227,216,0.35)'">admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#ddbcb9b0b4b39db1a8b0b2aea9a8a9b2afb4b3babcbebcb9b8b0a4f3beb2f3a7bc" style="color:rgba(232,227,216,0.35);transition:color 0.2s;" onmouseover="this.style.color='rgba(232,227,216,0.8)'" onmouseout="this.style.color='rgba(232,227,216,0.35)'">admin&#64;lumostutoringacademy&#46;co&#46;za</a></li>
         <li><a href="#register">Register</a></li>
       </ul>
     </div>
@@ -1209,7 +1209,7 @@ a { text-decoration: none; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function scrollToSection(id) {
   var el = document.getElementById(id);
   if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
@@ -1291,7 +1291,7 @@ function submitEnquiry() {
       <h4>2. Information We Collect</h4><ul><li>Name, grade and curriculum</li><li>Phone number and email</li><li>Payment information</li><li>Session recordings for student reference</li></ul>
       <h4>3. How We Use It</h4><ul><li>To deliver tutoring services</li><li>To communicate via WhatsApp and email</li><li>To process payments</li></ul>
       <h4>4. Sharing</h4><p>We do not sell or share your personal information with third parties except where required by law.</p>
-      <h4>5. Your Rights</h4><p>Contact admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com to access, correct or delete your data.</p>
+      <h4>5. Your Rights</h4><p>Contact admin&#64;lumostutoringacademy&#46;co&#46;za to access, correct or delete your data.</p>
     </div>
     <div class="modal-footer"><p>Last updated: 2025 · Lumos Tutoring Academy (Pty) Ltd</p><button class="modal-footer-btn" onclick="closeModal('modal-privacy')">Close</button></div>
   </div>
@@ -1316,7 +1316,7 @@ function submitEnquiry() {
       <h4>No Refunds After Payment</h4><p>All fees paid to Lumos are final and non-refundable, including the R99 registration fee, monthly subscriptions and one-on-one session fees.</p>
       <h4>Missed Sessions</h4><p>No refund for missed sessions. All sessions are recorded and available for replay.</p>
       <h4>Cancellation</h4><p>Cancel anytime. Takes effect end of billing month. No partial refunds for unused days.</p>
-      <h4>Contact</h4><p>Questions? admin&#64;lumostutoringacademy&#46;onmicrosoft&#46;com or WhatsApp 078 186 1196.</p>
+      <h4>Contact</h4><p>Questions? admin&#64;lumostutoringacademy&#46;co&#46;za or WhatsApp 078 186 1196.</p>
     </div>
     <div class="modal-footer"><p>Last updated: 2025 · Lumos Tutoring Academy (Pty) Ltd</p><button class="modal-footer-btn" onclick="closeModal('modal-refund')">Close</button></div>
   </div>
@@ -1346,15 +1346,16 @@ function submitEnquiry() {
       </div>
       <div class="book-step active" id="bstep1">
         <span class="book-step-label">Step 1 of 4</span>
-        <h4>Which subject?</h4>
+        <h4>Which subjects? <span style="font-size:0.75rem;color:#7a5c3e;font-family:'DM Sans',sans-serif;font-weight:400;">(select all that apply)</span></h4>
+        <p id="subjectHint" style="font-size:12px;color:#c9a96e;margin-top:0.5rem;min-height:16px;">&nbsp;</p>
         <div class="book-options">
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Mathematics</button>
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Mathematical Literacy</button>
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Physical Sciences</button>
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Life Sciences</button>
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Geography</button>
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Accounting</button>
-          <button class="book-option" onclick="selectBookOption(this,'subject')">Business Studies</button>
+          <button class="book-option" onclick="toggleSubject(this)">Mathematics</button>
+          <button class="book-option" onclick="toggleSubject(this)">Mathematical Literacy</button>
+          <button class="book-option" onclick="toggleSubject(this)">Physical Sciences</button>
+          <button class="book-option" onclick="toggleSubject(this)">Life Sciences</button>
+          <button class="book-option" onclick="toggleSubject(this)">Geography</button>
+          <button class="book-option" onclick="toggleSubject(this)">Accounting</button>
+          <button class="book-option" onclick="toggleSubject(this)">Business Studies</button>
         </div>
         <div class="book-nav"><button class="book-next" onclick="bookNext(2)" style="flex:1">Next &#8594;</button></div>
       </div>
@@ -1491,7 +1492,7 @@ function scrollToSection(id) {
 
 // ── EMAIL ──
 function mailToLumos() {
-  window.location = 'mailto:admin@lumostutoringacademy.onmicrosoft.com';
+  window.location = 'mailto:admin@lumostutoringacademy.co.za';
 }
 
 // ── MODALS ──
@@ -1511,11 +1512,11 @@ function closeMSForm() {
 }
 
 // ── BOOK SESSION ──
-var bookData = { subject: '', grade: '', hours: 1 };
+var bookData = { subjects: [], grade: '', hours: 1 };
 function openBook() { resetBook(); var o = document.getElementById('bookOverlay'); if (o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; } }
 function closeBook() { var o = document.getElementById('bookOverlay'); if (o) { o.classList.remove('open'); document.body.style.overflow = ''; } }
 function resetBook() {
-  bookData = { subject: '', grade: '', hours: 1 };
+  bookData = { subjects: [], grade: '', hours: 1 };
   for (var i = 1; i <= 4; i++) {
     var s = document.getElementById('bstep' + i); if (s) s.classList.remove('active');
     var d = document.getElementById('bp' + i); if (d) d.classList.remove('done');
@@ -1525,7 +1526,7 @@ function resetBook() {
   document.querySelectorAll('.book-option, .book-hour-btn').forEach(function(el) { el.classList.remove('selected'); });
 }
 function bookNext(step) {
-  if (step === 2 && !bookData.subject) { alert('Please select a subject.'); return; }
+  if (step === 2 && bookData.subjects.length === 0) { alert('Please select at least one subject.'); return; }
   if (step === 3 && !bookData.grade) { alert('Please select your grade.'); return; }
   if (step === 4 && !bookData.hours) { alert('Please select hours.'); return; }
   for (var i = 1; i <= 4; i++) { var s = document.getElementById('bstep' + i); if (s) s.classList.remove('active'); }
@@ -1541,6 +1542,19 @@ function bookBack(step) {
   var sn = document.getElementById('bstep' + step); if (sn) sn.classList.add('active');
   for (var j = 1; j <= step; j++) { var dj = document.getElementById('bp' + j); if (dj) dj.classList.add('done'); }
 }
+function toggleSubject(el) {
+  var subj = el.textContent.trim();
+  var idx = bookData.subjects.indexOf(subj);
+  var hint = document.getElementById('subjectHint');
+  if (idx > -1) {
+    bookData.subjects.splice(idx, 1);
+    el.classList.remove('selected');
+  } else {
+    bookData.subjects.push(subj);
+    el.classList.add('selected');
+  }
+  if (hint) hint.innerHTML = bookData.subjects.length > 0 ? bookData.subjects.join(', ') : '&nbsp;';
+}
 function selectBookOption(el, field) {
   el.parentElement.querySelectorAll('.book-option').forEach(function(b) { b.classList.remove('selected'); });
   el.classList.add('selected');
@@ -1554,16 +1568,12 @@ function selectHours(el, hours) {
 function updateQuote() {
   var total = 149 * bookData.hours;
   var amt = document.getElementById('bookQuoteAmt'); if (amt) amt.textContent = 'R' + total;
-  var det = document.getElementById('bookQuoteDetail'); if (det) det.textContent = bookData.hours + ' hour' + (bookData.hours > 1 ? 's' : '') + ' · R149/hr · ' + bookData.subject;
+  var det = document.getElementById('bookQuoteDetail'); if (det) det.textContent = bookData.hours + ' hour' + (bookData.hours > 1 ? 's' : '') + ' · R149/hr · ' + bookData.subjects.join(', ');
 }
 function sendBookingToWA() {
-  var msg = 'Hi Lumos! I would like to book a One-on-One session.\n\nSubject: ' + bookData.subject + '\nGrade: ' + bookData.grade + '\nHours: ' + bookData.hours + ' hour' + (bookData.hours > 1 ? 's' : '') + '\nEstimated cost: R' + (149 * bookData.hours) + '\n\nPlease confirm my slot. Thank you!';
+  var msg = 'Hi Lumos! I would like to book a One-on-One session.\n\nSubject(s): ' + bookData.subjects.join(', ') + '\nGrade: ' + bookData.grade + '\nHours: ' + bookData.hours + ' hour' + (bookData.hours > 1 ? 's' : '') + '\nEstimated cost: R' + (149 * bookData.hours) + '\n\nPlease confirm my slot. Thank you!';
   window.open('https://wa.me/27781861196?text=' + encodeURIComponent(msg), '_blank');
 }
 
 // ── NAV MOBILE ──
-function toggleMenu() { var m = document.getElementById('mobileMenu'); if (m) m.classList.toggle('open'); }
-function closeMenu() { var m = document.getElementById('mobileMenu'); if (m) m.classList.remove('open'); }
-</script>
-</body>
-</html>
+function toggleMenu() 
